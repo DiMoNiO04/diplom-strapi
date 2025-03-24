@@ -7,9 +7,11 @@ export default ({ env }) => ({
       database: env('DATABASE_NAME', 'yummyNom'),
       user: env('DATABASE_USERNAME', 'postgres'),
       password: env('DATABASE_PASSWORD', 'DiMoNiO02062004'),
-      ssl: env.bool('DATABASE_SSL', false) ? {
-        rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
-      } : false,
+      ssl: env.bool('DATABASE_SSL', false)
+        ? {
+            rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
+          }
+        : false,
       schema: env('DATABASE_SCHEMA', 'public'),
     },
     pool: {
