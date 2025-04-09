@@ -1,9 +1,17 @@
-export default [
-  'strapi::logger',
+module.exports = [
   'strapi::errors',
+  {
+    name: 'strapi::cors',
+    config: {
+      origin: [process.env.SITE_URL],
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+      headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
+      credentials: true,
+    },
+  },
   'strapi::security',
-  'strapi::cors',
   'strapi::poweredBy',
+  'strapi::logger',
   'strapi::query',
   'strapi::body',
   'strapi::session',
