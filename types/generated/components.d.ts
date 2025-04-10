@@ -13,6 +13,20 @@ export interface BlocksSimpleContent extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksSimpleContentWithBtn extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_simple_content_with_btns';
+  info: {
+    description: '';
+    displayName: 'simpleContentWithBtn';
+  };
+  attributes: {
+    btn: Schema.Attribute.Component<'shared.btn', false>;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    texts: Schema.Attribute.Component<'shared.text', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface BlocksTitleWithTexts extends Struct.ComponentSchema {
   collectionName: 'components_blocks_title_with_texts';
   info: {
@@ -22,6 +36,18 @@ export interface BlocksTitleWithTexts extends Struct.ComponentSchema {
   attributes: {
     texts: Schema.Attribute.Component<'shared.text', true>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedBtn extends Struct.ComponentSchema {
+  collectionName: 'components_shared_btns';
+  info: {
+    description: '';
+    displayName: 'btn';
+  };
+  attributes: {
+    link: Schema.Attribute.String;
+    text: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -90,7 +116,9 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'blocks.simple-content': BlocksSimpleContent;
+      'blocks.simple-content-with-btn': BlocksSimpleContentWithBtn;
       'blocks.title-with-texts': BlocksTitleWithTexts;
+      'shared.btn': SharedBtn;
       'shared.open-graph': SharedOpenGraph;
       'shared.seo': SharedSeo;
       'shared.text': SharedText;

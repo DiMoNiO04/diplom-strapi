@@ -381,6 +381,33 @@ export interface ApiPrivacyPolicyPagePrivacyPolicyPage extends Struct.SingleType
   };
 }
 
+export interface ApiTemplateShareRecipeTemplateShareRecipe extends Struct.SingleTypeSchema {
+  collectionName: 'template_share_recipes';
+  info: {
+    description: '';
+    displayName: 'TemplateShareRecipe';
+    pluralName: 'template-share-recipes';
+    singularName: 'template-share-recipe';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    btn: Schema.Attribute.Component<'shared.btn', false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::template-share-recipe.template-share-recipe'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    texts: Schema.Attribute.Component<'shared.text', true>;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
   info: {
@@ -792,6 +819,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::about-page.about-page': ApiAboutPageAboutPage;
       'api::privacy-policy-page.privacy-policy-page': ApiPrivacyPolicyPagePrivacyPolicyPage;
+      'api::template-share-recipe.template-share-recipe': ApiTemplateShareRecipeTemplateShareRecipe;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
