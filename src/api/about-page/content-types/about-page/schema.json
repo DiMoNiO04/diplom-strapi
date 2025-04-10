@@ -1,0 +1,38 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_pages",
+  "info": {
+    "singularName": "about-page",
+    "pluralName": "about-pages",
+    "displayName": "AboutPage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    },
+    "title": {
+      "type": "string"
+    },
+    "aboutMain": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blocks.simple-content"
+    },
+    "simpleRecipes": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blocks.simple-content"
+    },
+    "operating": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blocks.title-with-texts"
+    }
+  }
+}

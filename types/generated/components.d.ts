@@ -1,5 +1,30 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BlocksSimpleContent extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_simple_contents';
+  info: {
+    description: '';
+    displayName: 'simpleContent';
+  };
+  attributes: {
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    texts: Schema.Attribute.Component<'shared.text', true>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface BlocksTitleWithTexts extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_title_with_texts';
+  info: {
+    description: '';
+    displayName: 'titleWithTexts';
+  };
+  attributes: {
+    texts: Schema.Attribute.Component<'shared.text', true>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedOpenGraph extends Struct.ComponentSchema {
   collectionName: 'components_shared_open_graphs';
   info: {
@@ -51,11 +76,24 @@ export interface SharedSeo extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedText extends Struct.ComponentSchema {
+  collectionName: 'components_shared_texts';
+  info: {
+    displayName: 'text';
+  };
+  attributes: {
+    text: Schema.Attribute.Text;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'blocks.simple-content': BlocksSimpleContent;
+      'blocks.title-with-texts': BlocksTitleWithTexts;
       'shared.open-graph': SharedOpenGraph;
       'shared.seo': SharedSeo;
+      'shared.text': SharedText;
     }
   }
 }
