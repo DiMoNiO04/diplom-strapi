@@ -381,6 +381,32 @@ export interface ApiPrivacyPolicyPagePrivacyPolicyPage extends Struct.SingleType
   };
 }
 
+export interface ApiTemplateEmailNewsletterTemplateEmailNewsletter extends Struct.SingleTypeSchema {
+  collectionName: 'template_email_newsletters';
+  info: {
+    description: '';
+    displayName: 'TemplateEmailNewsletter';
+    pluralName: 'template-email-newsletters';
+    singularName: 'template-email-newsletter';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    infoText: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::template-email-newsletter.template-email-newsletter'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+  };
+}
+
 export interface ApiTemplateShareRecipeTemplateShareRecipe extends Struct.SingleTypeSchema {
   collectionName: 'template_share_recipes';
   info: {
@@ -819,6 +845,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::about-page.about-page': ApiAboutPageAboutPage;
       'api::privacy-policy-page.privacy-policy-page': ApiPrivacyPolicyPagePrivacyPolicyPage;
+      'api::template-email-newsletter.template-email-newsletter': ApiTemplateEmailNewsletterTemplateEmailNewsletter;
       'api::template-share-recipe.template-share-recipe': ApiTemplateShareRecipeTemplateShareRecipe;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

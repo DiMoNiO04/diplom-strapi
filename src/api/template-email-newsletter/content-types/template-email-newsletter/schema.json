@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "template_email_newsletters",
+  "info": {
+    "singularName": "template-email-newsletter",
+    "pluralName": "template-email-newsletters",
+    "displayName": "TemplateEmailNewsletter",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "infoText": {
+      "type": "text"
+    }
+  }
+}
