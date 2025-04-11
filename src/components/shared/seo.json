@@ -22,7 +22,9 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "openGraph": {
       "type": "component",
@@ -38,7 +40,8 @@
       "regex": "[^,]+"
     },
     "canonicalURL": {
-      "type": "string"
+      "type": "string",
+      "default": "categories/"
     }
   }
 }
