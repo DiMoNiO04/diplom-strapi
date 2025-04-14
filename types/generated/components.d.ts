@@ -71,7 +71,7 @@ export interface SharedOpenGraph extends Struct.ComponentSchema {
         maxLength: 70;
       }>;
     ogType: Schema.Attribute.String;
-    ogUrl: Schema.Attribute.String & Schema.Attribute.DefaultTo<'categories/'>;
+    ogUrl: Schema.Attribute.String;
   };
 }
 
@@ -83,7 +83,7 @@ export interface SharedSeo extends Struct.ComponentSchema {
     icon: 'search';
   };
   attributes: {
-    canonicalURL: Schema.Attribute.String & Schema.Attribute.DefaultTo<'categories/'>;
+    canonicalURL: Schema.Attribute.String;
     keywords: Schema.Attribute.Text;
     metaDescription: Schema.Attribute.String &
       Schema.Attribute.Required &
