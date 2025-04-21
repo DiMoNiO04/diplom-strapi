@@ -349,7 +349,7 @@ export interface ApiAboutPageAboutPage extends Struct.SingleTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'shared.seo', false> & Schema.Attribute.Required;
     simpleRecipes: Schema.Attribute.Component<'blocks.simple-content', false>;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
   };
@@ -358,6 +358,7 @@ export interface ApiAboutPageAboutPage extends Struct.SingleTypeSchema {
 export interface ApiCategoriesPageCategoriesPage extends Struct.SingleTypeSchema {
   collectionName: 'categories_pages';
   info: {
+    description: '';
     displayName: 'CategoriesPage';
     pluralName: 'categories-pages';
     singularName: 'categories-page';
@@ -368,12 +369,12 @@ export interface ApiCategoriesPageCategoriesPage extends Struct.SingleTypeSchema
   attributes: {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    headerBlock: Schema.Attribute.Component<'blocks.template-title-search-block', false> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::categories-page.categories-page'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    seo: Schema.Attribute.Component<'shared.seo', false>;
-    title: Schema.Attribute.String;
+    seo: Schema.Attribute.Component<'shared.seo', false> & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
   };
@@ -407,6 +408,57 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCollectionCollection extends Struct.CollectionTypeSchema {
+  collectionName: 'collections';
+  info: {
+    displayName: 'Collection';
+    pluralName: 'collections';
+    singularName: 'collection';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::collection.collection'> & Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    slug: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.Unique;
+    title: Schema.Attribute.Text & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCollectionsPageCollectionsPage extends Struct.SingleTypeSchema {
+  collectionName: 'collections_pages';
+  info: {
+    description: '';
+    displayName: 'CollectionsPage';
+    pluralName: 'collections-pages';
+    singularName: 'collections-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    headerBlock: Schema.Attribute.Component<'blocks.template-title-search-block', false> & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::collections-page.collections-page'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPrivacyPolicyPagePrivacyPolicyPage extends Struct.SingleTypeSchema {
   collectionName: 'privacy_policy_pages';
   info: {
@@ -427,7 +479,7 @@ export interface ApiPrivacyPolicyPagePrivacyPolicyPage extends Struct.SingleType
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'shared.seo', false> & Schema.Attribute.Required;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
   };
@@ -898,6 +950,8 @@ declare module '@strapi/strapi' {
       'api::about-page.about-page': ApiAboutPageAboutPage;
       'api::categories-page.categories-page': ApiCategoriesPageCategoriesPage;
       'api::category.category': ApiCategoryCategory;
+      'api::collection.collection': ApiCollectionCollection;
+      'api::collections-page.collections-page': ApiCollectionsPageCollectionsPage;
       'api::privacy-policy-page.privacy-policy-page': ApiPrivacyPolicyPagePrivacyPolicyPage;
       'api::template-email-newsletter.template-email-newsletter': ApiTemplateEmailNewsletterTemplateEmailNewsletter;
       'api::template-share-recipe.template-share-recipe': ApiTemplateShareRecipeTemplateShareRecipe;

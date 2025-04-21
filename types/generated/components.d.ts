@@ -27,6 +27,18 @@ export interface BlocksSimpleContentWithBtn extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksTemplateTitleSearchBlock extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_template_title_search_blocks';
+  info: {
+    displayName: 'templateTitleSearchBlock';
+  };
+  attributes: {
+    nothingText: Schema.Attribute.String & Schema.Attribute.Required;
+    search: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface BlocksTitleWithTexts extends Struct.ComponentSchema {
   collectionName: 'components_blocks_title_with_texts';
   info: {
@@ -117,6 +129,7 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'blocks.simple-content': BlocksSimpleContent;
       'blocks.simple-content-with-btn': BlocksSimpleContentWithBtn;
+      'blocks.template-title-search-block': BlocksTemplateTitleSearchBlock;
       'blocks.title-with-texts': BlocksTitleWithTexts;
       'shared.btn': SharedBtn;
       'shared.open-graph': SharedOpenGraph;

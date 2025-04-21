@@ -9,6 +9,7 @@ export default factories.createCoreController('api::categories-page.categories-p
     const populatedData = await strapi.service('api::categories-page.categories-page').find({
       populate: {
         seo: { populate: '*' },
+        headerBlock: { populate: '*' },
       },
     });
 

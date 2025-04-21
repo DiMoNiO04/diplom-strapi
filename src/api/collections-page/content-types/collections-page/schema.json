@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "privacy_policy_pages",
+  "collectionName": "collections_pages",
   "info": {
-    "singularName": "privacy-policy-page",
-    "pluralName": "privacy-policy-pages",
-    "displayName": "PrivacyPolicyPage",
+    "singularName": "collections-page",
+    "pluralName": "collections-pages",
+    "displayName": "CollectionsPage",
     "description": ""
   },
   "options": {
@@ -17,12 +17,11 @@
       "component": "shared.seo",
       "required": true
     },
-    "title": {
-      "type": "string",
+    "headerBlock": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blocks.template-title-search-block",
       "required": true
-    },
-    "content": {
-      "type": "richtext"
     }
   }
 }
