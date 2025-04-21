@@ -1,7 +1,3 @@
-/**
- * category controller
- */
-
 import { factories } from '@strapi/strapi';
 
 export default factories.createCoreController('api::category.category', ({ strapi }) => ({
@@ -15,5 +11,28 @@ export default factories.createCoreController('api::category.category', ({ strap
     });
 
     return populatedData;
+  },
+
+  async findOne(ctx) {
+    const { id } = ctx.params;
+    const sanitizedQueryParams = await this.sanitizeQuery(ctx);
+
+    const entity = await strapi.service('api::category.category').find({
+      ...sanitizedQueryParams,
+      filters: { slug: id },
+      populate: {
+        seo: { populate: '*' },
+        img: { populate: '*' },
+        fullImage: { populate: '*' },
+      },
+    });
+
+    if (!entity.results || entity.results.length === 0) {
+      return ctx.notFound();
+    }
+
+    const sanitizedEntity = await this.sanitizeOutput(entity.results[0], ctx);
+
+    return this.transformResponse(sanitizedEntity);
   },
 }));
