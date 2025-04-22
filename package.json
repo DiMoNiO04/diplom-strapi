@@ -20,6 +20,7 @@
     "@strapi/plugin-cloud": "5.11.3",
     "@strapi/plugin-seo": "^2.0.8",
     "@strapi/plugin-users-permissions": "5.11.3",
+    "@strapi/provider-email-nodemailer": "^5.12.5",
     "@strapi/strapi": "5.11.3",
     "pg": "8.8.0",
     "react": "^18.0.0",
