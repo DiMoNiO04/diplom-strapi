@@ -6,6 +6,7 @@ export const fieldsRecipe: string[] = [
   'instructions',
   'cookingTime',
   'calories',
+  'createdAt',
 ];
 export const fieldsImg: string[] = ['url', 'alternativeText', 'width', 'height', 'id'];
 export const fieldsCategory: string[] = ['id', 'documentId', 'title', 'description', 'slug'];

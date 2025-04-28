@@ -10,6 +10,7 @@ export default factories.createCoreController('api::category.category', ({ strap
           fields: fieldsImg,
         },
       },
+      sort: 'title',
     });
 
     return populatedData;
@@ -33,8 +34,14 @@ export default factories.createCoreController('api::category.category', ({ strap
         },
         recipes: {
           fields: fieldsRecipe,
+          populate: {
+            img: {
+              fields: fieldsImg,
+            },
+          },
         },
       },
+      sort: 'title',
     });
 
     if (!entity.results || entity.results.length === 0) {

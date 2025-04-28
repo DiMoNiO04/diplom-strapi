@@ -14,6 +14,7 @@ export default factories.createCoreController('api::collection.collection', ({ s
           fields: fieldsImg,
         },
       },
+      sort: 'title',
     });
 
     return populatedData;
@@ -34,8 +35,14 @@ export default factories.createCoreController('api::collection.collection', ({ s
         },
         recipes: {
           fields: fieldsRecipe,
+          populate: {
+            img: {
+              fields: fieldsImg,
+            },
+          },
         },
       },
+      sort: 'title',
     });
 
     if (!entity.results || entity.results.length === 0) {
