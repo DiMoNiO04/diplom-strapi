@@ -1,7 +1,8 @@
 {
   "collectionName": "components_blocks_template_title_search_blocks",
   "info": {
-    "displayName": "templateTitleSearchBlock"
+    "displayName": "templateTitleSearchBlock",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -11,7 +12,7 @@
     },
     "search": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "nothingText": {
       "type": "string",

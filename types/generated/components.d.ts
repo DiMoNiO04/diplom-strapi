@@ -30,11 +30,12 @@ export interface BlocksSimpleContentWithBtn extends Struct.ComponentSchema {
 export interface BlocksTemplateTitleSearchBlock extends Struct.ComponentSchema {
   collectionName: 'components_blocks_template_title_search_blocks';
   info: {
+    description: '';
     displayName: 'templateTitleSearchBlock';
   };
   attributes: {
     nothingText: Schema.Attribute.String & Schema.Attribute.Required;
-    search: Schema.Attribute.String & Schema.Attribute.Required;
+    search: Schema.Attribute.String;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }

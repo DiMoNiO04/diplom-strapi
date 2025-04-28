@@ -515,6 +515,30 @@ export interface ApiRecipeRecipe extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiRecipesPageRecipesPage extends Struct.SingleTypeSchema {
+  collectionName: 'recipes_pages';
+  info: {
+    description: '';
+    displayName: 'RecipesPage';
+    pluralName: 'recipes-pages';
+    singularName: 'recipes-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    headerBlock: Schema.Attribute.Component<'blocks.template-title-search-block', false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::recipes-page.recipes-page'> & Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+  };
+}
+
 export interface ApiTemplateEmailNewsletterTemplateEmailNewsletter extends Struct.SingleTypeSchema {
   collectionName: 'template_email_newsletters';
   info: {
@@ -987,6 +1011,7 @@ declare module '@strapi/strapi' {
       'api::collections-page.collections-page': ApiCollectionsPageCollectionsPage;
       'api::privacy-policy-page.privacy-policy-page': ApiPrivacyPolicyPagePrivacyPolicyPage;
       'api::recipe.recipe': ApiRecipeRecipe;
+      'api::recipes-page.recipes-page': ApiRecipesPageRecipesPage;
       'api::template-email-newsletter.template-email-newsletter': ApiTemplateEmailNewsletterTemplateEmailNewsletter;
       'api::template-share-recipe.template-share-recipe': ApiTemplateShareRecipeTemplateShareRecipe;
       'plugin::content-releases.release': PluginContentReleasesRelease;

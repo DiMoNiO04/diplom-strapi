@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "recipes_pages",
+  "info": {
+    "singularName": "recipes-page",
+    "pluralName": "recipes-pages",
+    "displayName": "RecipesPage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    },
+    "headerBlock": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blocks.template-title-search-block"
+    }
+  }
+}
