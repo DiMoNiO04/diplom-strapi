@@ -9,7 +9,9 @@ export default factories.createCoreController('api::collection.collection', ({ s
     const populatedData = await strapi.service('api::collection.collection').find({
       populate: {
         seo: { populate: '*' },
-        img: { populate: '*' },
+        img: {
+          fields: ['url', 'alternativeText', 'width', 'height', 'id'],
+        },
       },
     });
 
@@ -25,7 +27,9 @@ export default factories.createCoreController('api::collection.collection', ({ s
       filters: { slug: id },
       populate: {
         seo: { populate: '*' },
-        img: { populate: '*' },
+        img: {
+          fields: ['url', 'alternativeText', 'width', 'height', 'id'],
+        },
       },
     });
 

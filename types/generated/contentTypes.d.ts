@@ -485,6 +485,36 @@ export interface ApiPrivacyPolicyPagePrivacyPolicyPage extends Struct.SingleType
   };
 }
 
+export interface ApiRecipeRecipe extends Struct.CollectionTypeSchema {
+  collectionName: 'recipes';
+  info: {
+    description: '';
+    displayName: 'Recipe';
+    pluralName: 'recipes';
+    singularName: 'recipe';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    calories: Schema.Attribute.Integer;
+    cookingTime: Schema.Attribute.Integer;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    img: Schema.Attribute.Media<'images', true> & Schema.Attribute.Required;
+    ingredients: Schema.Attribute.RichText & Schema.Attribute.Required;
+    instructions: Schema.Attribute.RichText & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::recipe.recipe'> & Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+  };
+}
+
 export interface ApiTemplateEmailNewsletterTemplateEmailNewsletter extends Struct.SingleTypeSchema {
   collectionName: 'template_email_newsletters';
   info: {
@@ -956,6 +986,7 @@ declare module '@strapi/strapi' {
       'api::collection.collection': ApiCollectionCollection;
       'api::collections-page.collections-page': ApiCollectionsPageCollectionsPage;
       'api::privacy-policy-page.privacy-policy-page': ApiPrivacyPolicyPagePrivacyPolicyPage;
+      'api::recipe.recipe': ApiRecipeRecipe;
       'api::template-email-newsletter.template-email-newsletter': ApiTemplateEmailNewsletterTemplateEmailNewsletter;
       'api::template-share-recipe.template-share-recipe': ApiTemplateShareRecipeTemplateShareRecipe;
       'plugin::content-releases.release': PluginContentReleasesRelease;

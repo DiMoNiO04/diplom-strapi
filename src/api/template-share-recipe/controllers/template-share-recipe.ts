@@ -9,7 +9,9 @@ export default factories.createCoreController('api::template-share-recipe.templa
     const populatedData = await strapi.service('api::template-share-recipe.template-share-recipe').find({
       populate: {
         btn: { populate: '*' },
-        img: { populate: '*' },
+        img: {
+          fields: ['url', 'alternativeText', 'width', 'height', 'id'],
+        },
         texts: { populate: '*' },
       },
     });

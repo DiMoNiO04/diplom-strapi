@@ -5,8 +5,12 @@ export default factories.createCoreController('api::category.category', ({ strap
     const populatedData = await strapi.service('api::category.category').find({
       populate: {
         seo: { populate: '*' },
-        img: { populate: '*' },
-        fullImage: { populate: '*' },
+        img: {
+          fields: ['url', 'alternativeText', 'width', 'height', 'id'],
+        },
+        fullImage: {
+          fields: ['url', 'alternativeText', 'width', 'height', 'id'],
+        },
       },
     });
 
@@ -22,8 +26,12 @@ export default factories.createCoreController('api::category.category', ({ strap
       filters: { slug: id },
       populate: {
         seo: { populate: '*' },
-        img: { populate: '*' },
-        fullImage: { populate: '*' },
+        img: {
+          fields: ['url', 'alternativeText', 'width', 'height', 'id'],
+        },
+        fullImage: {
+          fields: ['url', 'alternativeText', 'width', 'height', 'id'],
+        },
       },
     });
 
