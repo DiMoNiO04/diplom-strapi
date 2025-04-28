@@ -1,15 +1,13 @@
 import { factories } from '@strapi/strapi';
+import { fieldsCategory, fieldsImg, fieldsRecipe, fieldsSeo } from '../../../utils/getFields';
 
 export default factories.createCoreController('api::category.category', ({ strapi }) => ({
-  async find(ctx) {
+  async find() {
     const populatedData = await strapi.service('api::category.category').find({
+      fields: fieldsCategory,
       populate: {
-        seo: { populate: '*' },
         img: {
-          fields: ['url', 'alternativeText', 'width', 'height', 'id'],
-        },
-        fullImage: {
-          fields: ['url', 'alternativeText', 'width', 'height', 'id'],
+          fields: fieldsImg,
         },
       },
     });
@@ -24,13 +22,17 @@ export default factories.createCoreController('api::category.category', ({ strap
     const entity = await strapi.service('api::category.category').find({
       ...sanitizedQueryParams,
       filters: { slug: id },
+      fields: fieldsCategory,
       populate: {
-        seo: { populate: '*' },
+        seo: fieldsSeo,
         img: {
-          fields: ['url', 'alternativeText', 'width', 'height', 'id'],
+          fields: fieldsImg,
         },
         fullImage: {
-          fields: ['url', 'alternativeText', 'width', 'height', 'id'],
+          fields: fieldsImg,
+        },
+        recipes: {
+          fields: fieldsRecipe,
         },
       },
     });

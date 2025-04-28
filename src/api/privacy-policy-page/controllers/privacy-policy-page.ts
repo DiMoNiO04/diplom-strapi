@@ -3,12 +3,14 @@
  */
 
 import { factories } from '@strapi/strapi';
+import { fieldsPage, fieldsSeo } from '../../../utils/getFields';
 
 export default factories.createCoreController('api::privacy-policy-page.privacy-policy-page', ({ strapi }) => ({
-  async find(ctx) {
+  async find() {
     const populatedData = await strapi.service('api::privacy-policy-page.privacy-policy-page').find({
+      fields: fieldsPage,
       populate: {
-        seo: { populate: '*' },
+        seo: fieldsSeo,
       },
     });
 

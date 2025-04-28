@@ -3,14 +3,15 @@
  */
 
 import { factories } from '@strapi/strapi';
+import { fieldsCollection, fieldsImg, fieldsRecipe, fieldsSeo } from '../../../utils/getFields';
 
 export default factories.createCoreController('api::collection.collection', ({ strapi }) => ({
-  async find(ctx) {
+  async find() {
     const populatedData = await strapi.service('api::collection.collection').find({
+      fields: fieldsCollection,
       populate: {
-        seo: { populate: '*' },
         img: {
-          fields: ['url', 'alternativeText', 'width', 'height', 'id'],
+          fields: fieldsImg,
         },
       },
     });
@@ -25,10 +26,14 @@ export default factories.createCoreController('api::collection.collection', ({ s
     const entity = await strapi.service('api::collection.collection').find({
       ...sanitizedQueryParams,
       filters: { slug: id },
+      fields: fieldsCollection,
       populate: {
-        seo: { populate: '*' },
+        seo: fieldsSeo,
         img: {
-          fields: ['url', 'alternativeText', 'width', 'height', 'id'],
+          fields: fieldsImg,
+        },
+        recipes: {
+          fields: fieldsRecipe,
         },
       },
     });

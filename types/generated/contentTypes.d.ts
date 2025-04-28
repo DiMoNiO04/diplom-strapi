@@ -400,6 +400,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::category.category'> & Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    recipes: Schema.Attribute.Relation<'manyToMany', 'api::recipe.recipe'>;
     seo: Schema.Attribute.Component<'shared.seo', false> & Schema.Attribute.Required;
     slug: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.Unique;
     title: Schema.Attribute.String & Schema.Attribute.Required;
@@ -411,6 +412,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
 export interface ApiCollectionCollection extends Struct.CollectionTypeSchema {
   collectionName: 'collections';
   info: {
+    description: '';
     displayName: 'Collection';
     pluralName: 'collections';
     singularName: 'collection';
@@ -426,6 +428,7 @@ export interface ApiCollectionCollection extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::collection.collection'> & Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    recipes: Schema.Attribute.Relation<'manyToMany', 'api::recipe.recipe'>;
     seo: Schema.Attribute.Component<'shared.seo', false>;
     slug: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.Unique;
     title: Schema.Attribute.Text & Schema.Attribute.Required;
@@ -498,6 +501,8 @@ export interface ApiRecipeRecipe extends Struct.CollectionTypeSchema {
   };
   attributes: {
     calories: Schema.Attribute.Integer;
+    categories: Schema.Attribute.Relation<'manyToMany', 'api::category.category'>;
+    collections: Schema.Attribute.Relation<'manyToMany', 'api::collection.collection'>;
     cookingTime: Schema.Attribute.Integer;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;

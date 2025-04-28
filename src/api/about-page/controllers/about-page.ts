@@ -3,12 +3,14 @@
  */
 
 import { factories } from '@strapi/strapi';
+import { fieldsPage, fieldsSeo } from '../../../utils/getFields';
 
 export default factories.createCoreController('api::about-page.about-page', ({ strapi }) => ({
-  async find(ctx) {
+  async find() {
     const populatedData = await strapi.service('api::about-page.about-page').find({
+      fields: fieldsPage,
       populate: {
-        seo: { populate: '*' },
+        seo: fieldsSeo,
         operating: { populate: '*' },
         simpleRecipes: { populate: '*' },
         aboutMain: { populate: '*' },
