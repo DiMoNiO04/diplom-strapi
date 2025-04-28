@@ -13,6 +13,9 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
         img: {
           fields: fieldsImg,
         },
+        categories: {
+          fields: fieldsCategory,
+        },
       },
     });
 
@@ -21,8 +24,11 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
 
   async findOne(ctx) {
     const { id } = ctx.params;
+    const sanitizedQueryParams = await this.sanitizeQuery(ctx);
 
-    const populatedData = await strapi.service('api::recipe.recipe').findOne(id, {
+    const entity = await strapi.service('api::recipe.recipe').find({
+      ...sanitizedQueryParams,
+      filters: { documentId: id },
       fields: fieldsRecipe,
       populate: {
         seo: fieldsSeo,
@@ -38,6 +44,12 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
       },
     });
 
-    return populatedData;
+    if (!entity.results || entity.results.length === 0) {
+      return ctx.notFound();
+    }
+
+    const sanitizedEntity = await this.sanitizeOutput(entity.results[0], ctx);
+
+    return this.transformResponse(sanitizedEntity);
   },
 }));

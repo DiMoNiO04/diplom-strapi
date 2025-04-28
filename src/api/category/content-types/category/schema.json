@@ -16,7 +16,8 @@
       "required": true
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "slug": {
       "type": "string",
@@ -27,7 +28,12 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "seo": {
       "type": "component",
@@ -39,7 +45,12 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "recipes": {
       "type": "relation",
