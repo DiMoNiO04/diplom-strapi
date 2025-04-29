@@ -568,59 +568,6 @@ export interface ApiRecipesPageRecipesPage extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiTemplateEmailNewsletterTemplateEmailNewsletter extends Struct.SingleTypeSchema {
-  collectionName: 'template_email_newsletters';
-  info: {
-    description: '';
-    displayName: 'TemplateEmailNewsletter';
-    pluralName: 'template-email-newsletters';
-    singularName: 'template-email-newsletter';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    infoText: Schema.Attribute.Text;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::template-email-newsletter.template-email-newsletter'> &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
-  };
-}
-
-export interface ApiTemplateShareRecipeTemplateShareRecipe extends Struct.SingleTypeSchema {
-  collectionName: 'template_share_recipes';
-  info: {
-    description: '';
-    displayName: 'TemplateShareRecipe';
-    pluralName: 'template-share-recipes';
-    singularName: 'template-share-recipe';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    btn: Schema.Attribute.Component<'shared.btn', false>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
-    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::template-share-recipe.template-share-recipe'> &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    texts: Schema.Attribute.Component<'shared.text', true>;
-    title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
-  };
-}
-
 export interface PluginContentReleasesRelease extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
   info: {
@@ -1043,8 +990,6 @@ declare module '@strapi/strapi' {
       'api::privacy-policy-page.privacy-policy-page': ApiPrivacyPolicyPagePrivacyPolicyPage;
       'api::recipe.recipe': ApiRecipeRecipe;
       'api::recipes-page.recipes-page': ApiRecipesPageRecipesPage;
-      'api::template-email-newsletter.template-email-newsletter': ApiTemplateEmailNewsletterTemplateEmailNewsletter;
-      'api::template-share-recipe.template-share-recipe': ApiTemplateShareRecipeTemplateShareRecipe;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
