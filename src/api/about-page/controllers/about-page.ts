@@ -3,7 +3,9 @@
  */
 
 import { factories } from '@strapi/strapi';
-import { fieldsPage, fieldsSeo } from '../../../utils/getFields';
+import { fieldsSeo } from '../../../utils/getFields';
+
+const fieldsPage: string[] = ['id', 'documentId', 'createdAt', 'title'];
 
 export default factories.createCoreController('api::about-page.about-page', ({ strapi }) => ({
   async find() {

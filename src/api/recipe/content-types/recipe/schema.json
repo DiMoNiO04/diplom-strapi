@@ -42,7 +42,9 @@
       "type": "media",
       "multiple": true,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "categories": {
       "type": "relation",
@@ -55,6 +57,12 @@
       "relation": "manyToMany",
       "target": "api::collection.collection",
       "mappedBy": "recipes"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "recipes"
     }
   }
 }

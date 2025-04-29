@@ -12,6 +12,7 @@ export const fieldsImg: string[] = ['url', 'alternativeText', 'width', 'height',
 export const fieldsCategory: string[] = ['id', 'documentId', 'title', 'description', 'slug'];
 export const fieldsCollection: string[] = ['id', 'documentId', 'title', 'description', 'slug'];
 export const fieldsPage: string[] = ['id', 'documentId', 'createdAt'];
+export const fieldsUser: string[] = ['id', 'documentId', 'username', 'firstName', 'lastName', 'patronymic'];
 
 export const fieldsSeo = {
   populate: {

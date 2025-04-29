@@ -3,7 +3,14 @@
  */
 
 import { factories } from '@strapi/strapi';
-import { fieldsCategory, fieldsCollection, fieldsImg, fieldsRecipe, fieldsSeo } from '../../../utils/getFields';
+import {
+  fieldsCategory,
+  fieldsCollection,
+  fieldsImg,
+  fieldsRecipe,
+  fieldsSeo,
+  fieldsUser,
+} from '../../../utils/getFields';
 
 export default factories.createCoreController('api::recipe.recipe', ({ strapi }) => ({
   async find() {
@@ -15,6 +22,14 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
         },
         categories: {
           fields: fieldsCategory,
+        },
+        user: {
+          fields: fieldsUser,
+          populate: {
+            avatar: {
+              fields: fieldsImg,
+            },
+          },
         },
       },
     });
@@ -40,6 +55,14 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
         },
         collections: {
           fields: fieldsCollection,
+        },
+        user: {
+          fields: fieldsUser,
+          populate: {
+            avatar: {
+              fields: fieldsImg,
+            },
+          },
         },
       },
     });

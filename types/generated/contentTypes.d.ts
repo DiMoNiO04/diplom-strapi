@@ -540,6 +540,7 @@ export interface ApiRecipeRecipe extends Struct.CollectionTypeSchema {
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<'manyToOne', 'plugin::users-permissions.user'>;
   };
 }
 
@@ -1009,6 +1010,7 @@ export interface PluginUsersPermissionsUser extends Struct.CollectionTypeSchema 
     patronymic: Schema.Attribute.String;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    recipes: Schema.Attribute.Relation<'oneToMany', 'api::recipe.recipe'>;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
     role: Schema.Attribute.Relation<'manyToOne', 'plugin::users-permissions.role'>;
     updatedAt: Schema.Attribute.DateTime;
