@@ -8,22 +8,26 @@ export const fieldsRecipe: string[] = [
   'calories',
   'createdAt',
 ];
-export const fieldsImg: string[] = ['url', 'alternativeText', 'width', 'height', 'id'];
 export const fieldsCategory: string[] = ['id', 'documentId', 'title', 'description', 'slug'];
 export const fieldsCollection: string[] = ['id', 'documentId', 'title', 'description', 'slug'];
-export const fieldsPage: string[] = ['id', 'documentId', 'createdAt'];
-export const fieldsUser: string[] = ['id', 'documentId', 'username', 'firstName', 'lastName', 'patronymic'];
+
+export const fieldsImg = {
+  fields: ['url', 'alternativeText', 'width', 'height', 'id'],
+};
+
+export const fieldsUser = {
+  fields: ['id', 'documentId', 'username', 'firstName', 'lastName', 'patronymic'],
+  populate: {
+    avatar: fieldsImg,
+  },
+};
 
 export const fieldsSeo = {
   populate: {
-    metaImage: {
-      fields: fieldsImg,
-    },
+    metaImage: fieldsImg,
     openGraph: {
       populate: {
-        ogImage: {
-          fields: fieldsImg,
-        },
+        ogImage: fieldsImg,
       },
     },
   },

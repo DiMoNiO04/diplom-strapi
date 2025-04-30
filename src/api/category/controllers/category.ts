@@ -6,9 +6,7 @@ export default factories.createCoreController('api::category.category', ({ strap
     const populatedData = await strapi.service('api::category.category').find({
       fields: fieldsCategory,
       populate: {
-        img: {
-          fields: fieldsImg,
-        },
+        img: fieldsImg,
       },
       sort: 'title',
     });
@@ -26,18 +24,12 @@ export default factories.createCoreController('api::category.category', ({ strap
       fields: fieldsCategory,
       populate: {
         seo: fieldsSeo,
-        img: {
-          fields: fieldsImg,
-        },
-        fullImage: {
-          fields: fieldsImg,
-        },
+        img: fieldsImg,
+        fullImage: fieldsImg,
         recipes: {
           fields: fieldsRecipe,
           populate: {
-            img: {
-              fields: fieldsImg,
-            },
+            img: fieldsImg,
           },
         },
       },

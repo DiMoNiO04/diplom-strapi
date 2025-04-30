@@ -17,20 +17,11 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
     const populatedData = await strapi.service('api::recipe.recipe').find({
       fields: fieldsRecipe,
       populate: {
-        img: {
-          fields: fieldsImg,
-        },
+        img: fieldsImg,
         categories: {
           fields: fieldsCategory,
         },
-        user: {
-          fields: fieldsUser,
-          populate: {
-            avatar: {
-              fields: fieldsImg,
-            },
-          },
-        },
+        user: fieldsUser,
       },
     });
 
@@ -47,23 +38,14 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
       fields: fieldsRecipe,
       populate: {
         seo: fieldsSeo,
-        img: {
-          fields: fieldsImg,
-        },
+        img: fieldsImg,
         categories: {
           fields: fieldsCategory,
         },
         collections: {
           fields: fieldsCollection,
         },
-        user: {
-          fields: fieldsUser,
-          populate: {
-            avatar: {
-              fields: fieldsImg,
-            },
-          },
-        },
+        user: fieldsUser,
       },
     });
 

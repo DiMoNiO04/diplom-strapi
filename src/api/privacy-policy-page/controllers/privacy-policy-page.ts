@@ -3,7 +3,9 @@
  */
 
 import { factories } from '@strapi/strapi';
-import { fieldsPage, fieldsSeo } from '../../../utils/getFields';
+import { fieldsSeo } from '../../../utils/getFields';
+
+const fieldsPage: string[] = ['id', 'documentId', 'createdAt', 'title', 'content'];
 
 export default factories.createCoreController('api::privacy-policy-page.privacy-policy-page', ({ strapi }) => ({
   async find() {

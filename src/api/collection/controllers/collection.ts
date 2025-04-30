@@ -10,9 +10,7 @@ export default factories.createCoreController('api::collection.collection', ({ s
     const populatedData = await strapi.service('api::collection.collection').find({
       fields: fieldsCollection,
       populate: {
-        img: {
-          fields: fieldsImg,
-        },
+        img: fieldsImg,
       },
       sort: 'title',
     });
@@ -30,15 +28,11 @@ export default factories.createCoreController('api::collection.collection', ({ s
       fields: fieldsCollection,
       populate: {
         seo: fieldsSeo,
-        img: {
-          fields: fieldsImg,
-        },
+        img: fieldsImg,
         recipes: {
           fields: fieldsRecipe,
           populate: {
-            img: {
-              fields: fieldsImg,
-            },
+            img: fieldsImg,
           },
         },
       },
