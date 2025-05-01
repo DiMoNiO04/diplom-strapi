@@ -57,4 +57,28 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
 
     return this.transformResponse(sanitizedEntity);
   },
+
+  async findMyRecipes(ctx) {
+    const user = ctx.state.user;
+
+    if (!user) {
+      return ctx.unauthorized('You must be logged in to view your recipes');
+    }
+
+    const populatedData = await strapi.service('api::recipe.recipe').find({
+      fields: fieldsRecipe,
+      filters: {
+        user: user.id,
+      },
+      populate: {
+        img: fieldsImg,
+        categories: {
+          fields: fieldsCategory,
+        },
+        user: fieldsUser,
+      },
+    });
+
+    return populatedData;
+  },
 }));
