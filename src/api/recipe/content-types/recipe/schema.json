@@ -33,16 +33,18 @@
       "required": true
     },
     "cookingTime": {
-      "type": "integer"
+      "type": "biginteger"
     },
     "calories": {
-      "type": "integer"
+      "type": "biginteger"
     },
     "img": {
       "type": "media",
       "multiple": true,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "categories": {
       "type": "relation",

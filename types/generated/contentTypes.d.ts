@@ -370,8 +370,8 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
     description: Schema.Attribute.Text & Schema.Attribute.Required;
-    fullImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> & Schema.Attribute.Required;
-    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> & Schema.Attribute.Required;
+    fullImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    img: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::category.category'> & Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -399,7 +399,7 @@ export interface ApiCollectionCollection extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
     description: Schema.Attribute.Text & Schema.Attribute.Required;
-    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> & Schema.Attribute.Required;
+    img: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::collection.collection'> & Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -450,10 +450,10 @@ export interface ApiRecipeRecipe extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    calories: Schema.Attribute.Integer;
+    calories: Schema.Attribute.BigInteger;
     categories: Schema.Attribute.Relation<'manyToMany', 'api::category.category'>;
     collections: Schema.Attribute.Relation<'manyToMany', 'api::collection.collection'>;
-    cookingTime: Schema.Attribute.Integer;
+    cookingTime: Schema.Attribute.BigInteger;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
     description: Schema.Attribute.Text & Schema.Attribute.Required;

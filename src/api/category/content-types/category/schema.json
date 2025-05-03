@@ -28,7 +28,9 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "seo": {
       "type": "component",
@@ -40,7 +42,9 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "recipes": {
       "type": "relation",
