@@ -42,7 +42,9 @@
       "type": "media",
       "multiple": true,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "categories": {
       "type": "relation",

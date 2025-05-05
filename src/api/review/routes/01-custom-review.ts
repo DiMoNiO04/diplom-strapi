@@ -2,7 +2,7 @@ module.exports = {
   routes: [
     {
       method: 'GET',
-      path: '/review/cookAgain',
+      path: '/reviews/cookAgain',
       handler: 'review.findRecipesUserCookAgain',
     },
   ],

@@ -1,7 +1,3 @@
-/**
- * review controller
- */
-
 import { factories } from '@strapi/strapi';
 import { fieldsImg, fieldsRecipe, fieldsRecipeReview, fieldsReview, fieldsUserReview } from '../../../utils/getFields';
 
@@ -30,6 +26,7 @@ export default factories.createCoreController('api::review.review', ({ strapi })
         user: user.id,
         reviewType: 'yes',
       },
+      fields: fieldsReview,
       populate: {
         recipe: {
           fields: fieldsRecipe,
@@ -42,9 +39,7 @@ export default factories.createCoreController('api::review.review', ({ strapi })
 
     const reviews = reviewsResponse.results;
 
-    const recipes = reviews.map((review) => review.recipe);
-
-    const sanitized = await Promise.all(recipes.map((recipe) => this.sanitizeOutput(recipe, ctx)));
+    const sanitized = await Promise.all(reviews.map((review) => this.sanitizeOutput(review, ctx)));
 
     return this.transformResponse(sanitized);
   },
