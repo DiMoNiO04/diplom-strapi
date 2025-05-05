@@ -3,7 +3,7 @@
  */
 
 import { factories } from '@strapi/strapi';
-import { fieldsRecipeReview, fieldsReview, fieldsUserReview } from '../../../utils/getFields';
+import { fieldsImg, fieldsRecipe, fieldsRecipeReview, fieldsReview, fieldsUserReview } from '../../../utils/getFields';
 
 export default factories.createCoreController('api::review.review', ({ strapi }) => ({
   async find() {
@@ -18,33 +18,34 @@ export default factories.createCoreController('api::review.review', ({ strapi })
     return populatedData;
   },
 
-  // async findOne(ctx) {
-  //   const { id } = ctx.params;
-  //   const sanitizedQueryParams = await this.sanitizeQuery(ctx);
+  async findRecipesUserCookAgain(ctx) {
+    const user = ctx.state.user;
 
-  //   const entity = await strapi.service('api::review.review').find({
-  //     ...sanitizedQueryParams,
-  //     filters: { documentId: id },
-  //     fields: fieldsRecipe,
-  //     populate: {
-  //       seo: fieldsSeo,
-  //       img: fieldsImg,
-  //       categories: {
-  //         fields: fieldsCategory,
-  //       },
-  //       collections: {
-  //         fields: fieldsCollection,
-  //       },
-  //       user: fieldsUser,
-  //     },
-  //   });
+    if (!user) {
+      return ctx.unauthorized('You must be logged in to view your repeat recipes');
+    }
 
-  //   if (!entity.results || entity.results.length === 0) {
-  //     return ctx.notFound();
-  //   }
+    const reviewsResponse = await strapi.service('api::review.review').find({
+      filters: {
+        user: user.id,
+        reviewType: 'yes',
+      },
+      populate: {
+        recipe: {
+          fields: fieldsRecipe,
+          populate: {
+            img: fieldsImg,
+          },
+        },
+      },
+    });
 
-  //   const sanitizedEntity = await this.sanitizeOutput(entity.results[0], ctx);
+    const reviews = reviewsResponse.results;
 
-  //   return this.transformResponse(sanitizedEntity);
-  // },
+    const recipes = reviews.map((review) => review.recipe);
+
+    const sanitized = await Promise.all(recipes.map((recipe) => this.sanitizeOutput(recipe, ctx)));
+
+    return this.transformResponse(sanitized);
+  },
 }));

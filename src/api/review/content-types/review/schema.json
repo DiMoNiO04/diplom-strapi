@@ -24,10 +24,7 @@
     },
     "reviewType": {
       "type": "enumeration",
-      "enum": [
-        "yes",
-        "no"
-      ],
+      "enum": ["yes", "no"],
       "required": true
     }
   }
