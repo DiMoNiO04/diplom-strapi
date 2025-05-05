@@ -34,12 +34,14 @@ export const fieldsSeo = {
   },
 };
 
-export const fieldsUserReview = {
+export const fieldsUserShort = {
   fields: ['id', 'documentId', 'email', 'username'],
 };
 
 export const fieldsReview = ['id', 'documentId', 'reviewType'];
 
-export const fieldsRecipeReview = {
+export const fieldsRecipeShort = {
   fields: ['id', 'documentId', 'title'],
 };
+
+export const fieldsFavorites = ['id', 'documentId'];

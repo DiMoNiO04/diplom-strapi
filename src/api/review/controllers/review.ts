@@ -1,13 +1,13 @@
 import { factories } from '@strapi/strapi';
-import { fieldsImg, fieldsRecipe, fieldsRecipeReview, fieldsReview, fieldsUserReview } from '../../../utils/getFields';
+import { fieldsImg, fieldsRecipe, fieldsRecipeShort, fieldsReview, fieldsUserShort } from '../../../utils/getFields';
 
 export default factories.createCoreController('api::review.review', ({ strapi }) => ({
   async find() {
     const populatedData = await strapi.service('api::review.review').find({
       fields: fieldsReview,
       populate: {
-        recipe: fieldsRecipeReview,
-        user: fieldsUserReview,
+        recipe: fieldsRecipeShort,
+        user: fieldsUserShort,
       },
     });
 

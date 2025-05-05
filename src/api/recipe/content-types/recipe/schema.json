@@ -69,6 +69,12 @@
       "relation": "oneToMany",
       "target": "api::review.review",
       "mappedBy": "recipe"
+    },
+    "favorites": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::favorite.favorite",
+      "mappedBy": "recipe"
     }
   }
 }
