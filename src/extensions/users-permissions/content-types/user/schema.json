@@ -80,12 +80,20 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "recipes": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::recipe.recipe",
+      "mappedBy": "user"
+    },
+    "reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review.review",
       "mappedBy": "user"
     }
   }

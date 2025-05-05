@@ -5,5 +5,10 @@ module.exports = {
       path: '/recipes/my',
       handler: 'recipe.findMyRecipes',
     },
+    {
+      method: 'GET',
+      path: '/recipes/bestRating',
+      handler: 'recipe.findBestRecipes',
+    },
   ],
 };

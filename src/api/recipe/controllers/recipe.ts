@@ -8,6 +8,7 @@ import {
   fieldsCollection,
   fieldsImg,
   fieldsRecipe,
+  fieldsReview,
   fieldsSeo,
   fieldsUser,
 } from '../../../utils/getFields';
@@ -46,6 +47,9 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
           fields: fieldsCollection,
         },
         user: fieldsUser,
+        reviews: {
+          fields: fieldsReview,
+        },
       },
     });
 
@@ -80,5 +84,45 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
     });
 
     return populatedData;
+  },
+
+  async findBestRecipes(ctx) {
+    const recipesResponse = await strapi.service('api::recipe.recipe').find({
+      fields: fieldsRecipe,
+      populate: {
+        img: fieldsImg,
+        categories: { fields: fieldsCategory },
+        user: fieldsUser,
+        reviews: { fields: fieldsReview },
+      },
+    });
+
+    const recipes = recipesResponse.results;
+
+    const enriched = recipes.map((recipe) => {
+      const reviews = recipe.reviews || [];
+      const yesCount = reviews.filter((r) => r.reviewType === 'yes').length;
+      const totalCount = reviews.length;
+      const positivePercent = totalCount ? Math.round((yesCount / totalCount) * 100) : 0;
+
+      return {
+        ...recipe,
+        _positivePercent: positivePercent,
+        _yesCount: yesCount,
+      };
+    });
+
+    const sorted = enriched.sort((a, b) => {
+      if (b._positivePercent !== a._positivePercent) {
+        return b._positivePercent - a._positivePercent;
+      }
+      return b._yesCount - a._yesCount;
+    });
+
+    const top6 = sorted.slice(0, 6);
+
+    const sanitized = await Promise.all(top6.map((recipe) => this.sanitizeOutput(recipe, ctx)));
+
+    return this.transformResponse(sanitized);
   },
 }));

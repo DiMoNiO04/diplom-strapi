@@ -33,3 +33,13 @@ export const fieldsSeo = {
     },
   },
 };
+
+export const fieldsUserReview = {
+  fields: ['id', 'documentId', 'email', 'username'],
+};
+
+export const fieldsReview = ['id', 'documentId', 'reviewType'];
+
+export const fieldsRecipeReview = {
+  fields: ['id', 'documentId', 'title'],
+};
