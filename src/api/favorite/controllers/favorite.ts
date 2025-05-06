@@ -35,6 +35,13 @@ export default factories.createCoreController('api::favorite.favorite', ({ strap
           fields: fieldsRecipe,
           populate: {
             img: fieldsImg,
+            favorites: {
+              fields: fieldsFavorites,
+              populate: {
+                recipe: fieldsRecipeShort,
+                user: fieldsUserShort,
+              },
+            },
           },
         },
       },

@@ -6,11 +6,14 @@ import { factories } from '@strapi/strapi';
 import {
   fieldsCategory,
   fieldsCollection,
+  fieldsFavorites,
   fieldsImg,
   fieldsRecipe,
+  fieldsRecipeShort,
   fieldsReview,
   fieldsSeo,
   fieldsUser,
+  fieldsUserShort,
 } from '../../../utils/getFields';
 
 export default factories.createCoreController('api::recipe.recipe', ({ strapi }) => ({
@@ -23,6 +26,13 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
           fields: fieldsCategory,
         },
         user: fieldsUser,
+        favorites: {
+          fields: fieldsFavorites,
+          populate: {
+            recipe: fieldsRecipeShort,
+            user: fieldsUserShort,
+          },
+        },
       },
     });
 
@@ -49,6 +59,13 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
         user: fieldsUser,
         reviews: {
           fields: fieldsReview,
+        },
+        favorites: {
+          fields: fieldsFavorites,
+          populate: {
+            recipe: fieldsRecipeShort,
+            user: fieldsUserShort,
+          },
         },
       },
     });

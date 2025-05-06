@@ -16,7 +16,7 @@
       "target": "api::recipe.recipe",
       "inversedBy": "favorites"
     },
-     "user": {
+    "user": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
