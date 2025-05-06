@@ -898,6 +898,7 @@ export interface PluginUsersPermissionsUser extends Struct.CollectionTypeSchema 
         minLength: 6;
       }>;
     firstName: Schema.Attribute.String;
+    isSubscribe: Schema.Attribute.Boolean & Schema.Attribute.Required & Schema.Attribute.DefaultTo<false>;
     lastName: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'plugin::users-permissions.user'> & Schema.Attribute.Private;

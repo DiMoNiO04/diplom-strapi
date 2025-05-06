@@ -4,6 +4,7 @@
 
 import { factories } from '@strapi/strapi';
 import { fieldsFavorites, fieldsImg, fieldsRecipe, fieldsRecipeShort, fieldsUserShort } from '../../../utils/getFields';
+import { MS_NO_DELETE_FAVORITES, MS_YOU_MUST_LOGGED } from '../../../utils/consts';
 
 export default factories.createCoreController('api::favorite.favorite', ({ strapi }) => ({
   async find() {
@@ -22,7 +23,7 @@ export default factories.createCoreController('api::favorite.favorite', ({ strap
     const user = ctx.state.user;
 
     if (!user) {
-      return ctx.unauthorized('You must be logged in to view your repeat recipes');
+      return ctx.unauthorized(MS_YOU_MUST_LOGGED);
     }
 
     const favoritesResponse = await strapi.service('api::favorite.favorite').find({
@@ -58,7 +59,7 @@ export default factories.createCoreController('api::favorite.favorite', ({ strap
     const user = ctx.state.user;
 
     if (!user) {
-      return ctx.unauthorized('You must be logged in to delete favorites');
+      return ctx.unauthorized(MS_YOU_MUST_LOGGED);
     }
 
     const userFavorites = await strapi.entityService.findMany('api::favorite.favorite', {
@@ -69,7 +70,7 @@ export default factories.createCoreController('api::favorite.favorite', ({ strap
     const favoriteIds = userFavorites.map((fav) => fav.id);
 
     if (favoriteIds.length === 0) {
-      return ctx.send({ message: 'No favorites to delete.' });
+      return ctx.send({ message: MS_NO_DELETE_FAVORITES });
     }
 
     await Promise.all(favoriteIds.map((id) => strapi.entityService.delete('api::favorite.favorite', id)));

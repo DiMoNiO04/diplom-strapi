@@ -80,7 +80,9 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "recipes": {
       "type": "relation",
@@ -93,6 +95,11 @@
       "relation": "oneToMany",
       "target": "api::review.review",
       "mappedBy": "user"
+    },
+    "isSubscribe": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }
