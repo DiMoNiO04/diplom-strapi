@@ -1,5 +1,10 @@
+/**
+ * review controller
+ */
+
 import { factories } from '@strapi/strapi';
 import { fieldsImg, fieldsRecipe, fieldsRecipeShort, fieldsReview, fieldsUserShort } from '../../../utils/getFields';
+import { MS_YOU_MUST_LOGGED } from '../../../utils/consts';
 
 export default factories.createCoreController('api::review.review', ({ strapi }) => ({
   async find() {
@@ -18,7 +23,7 @@ export default factories.createCoreController('api::review.review', ({ strapi })
     const user = ctx.state.user;
 
     if (!user) {
-      return ctx.unauthorized('You must be logged in to view your repeat recipes');
+      return ctx.unauthorized(MS_YOU_MUST_LOGGED);
     }
 
     const reviewsResponse = await strapi.service('api::review.review').find({

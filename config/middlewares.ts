@@ -1,9 +1,11 @@
+import { SITE_URL } from '../src/utils/consts';
+
 module.exports = [
   'strapi::errors',
   {
     name: 'strapi::cors',
     config: {
-      origin: [process.env.SITE_URL],
+      origin: [SITE_URL],
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
       headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
       credentials: true,

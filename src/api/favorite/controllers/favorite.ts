@@ -4,7 +4,7 @@
 
 import { factories } from '@strapi/strapi';
 import { fieldsFavorites, fieldsImg, fieldsRecipe, fieldsRecipeShort, fieldsUserShort } from '../../../utils/getFields';
-import { MS_NO_DELETE_FAVORITES, MS_YOU_MUST_LOGGED } from '../../../utils/consts';
+import { MS_YOU_MUST_LOGGED } from '../../../utils/consts';
 
 export default factories.createCoreController('api::favorite.favorite', ({ strapi }) => ({
   async find() {
@@ -59,7 +59,7 @@ export default factories.createCoreController('api::favorite.favorite', ({ strap
     const user = ctx.state.user;
 
     if (!user) {
-      return ctx.unauthorized(MS_YOU_MUST_LOGGED);
+      return ctx.unauthorized();
     }
 
     const userFavorites = await strapi.entityService.findMany('api::favorite.favorite', {
@@ -70,11 +70,11 @@ export default factories.createCoreController('api::favorite.favorite', ({ strap
     const favoriteIds = userFavorites.map((fav) => fav.id);
 
     if (favoriteIds.length === 0) {
-      return ctx.send({ message: MS_NO_DELETE_FAVORITES });
+      return ctx.noContent();
     }
 
     await Promise.all(favoriteIds.map((id) => strapi.entityService.delete('api::favorite.favorite', id)));
 
-    return ctx.send({ message: `${favoriteIds.length} favorites deleted.` });
+    return ctx.noContent();
   },
 }));

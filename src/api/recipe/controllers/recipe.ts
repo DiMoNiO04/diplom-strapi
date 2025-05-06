@@ -15,6 +15,7 @@ import {
   fieldsUser,
   fieldsUserShort,
 } from '../../../utils/getFields';
+import { MS_YOU_MUST_LOGGED } from '../../../utils/consts';
 
 export default factories.createCoreController('api::recipe.recipe', ({ strapi }) => ({
   async find() {
@@ -83,7 +84,7 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
     const user = ctx.state.user;
 
     if (!user) {
-      return ctx.unauthorized('You must be logged in to view your recipes');
+      return ctx.unauthorized(MS_YOU_MUST_LOGGED);
     }
 
     const populatedData = await strapi.service('api::recipe.recipe').find({
