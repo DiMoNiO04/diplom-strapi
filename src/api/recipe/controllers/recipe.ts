@@ -21,6 +21,10 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
   async find() {
     const populatedData = await strapi.service('api::recipe.recipe').find({
       fields: fieldsRecipe,
+      pagination: {
+        page: 1,
+        pageSize: 10000,
+      },
       populate: {
         img: fieldsImg,
         categories: {
@@ -48,6 +52,10 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
       ...sanitizedQueryParams,
       filters: { documentId: id },
       fields: fieldsRecipe,
+      pagination: {
+        page: 1,
+        pageSize: 10000,
+      },
       populate: {
         seo: fieldsSeo,
         img: fieldsImg,
@@ -89,6 +97,10 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
 
     const populatedData = await strapi.service('api::recipe.recipe').find({
       fields: fieldsRecipe,
+      pagination: {
+        page: 1,
+        pageSize: 10000,
+      },
       filters: {
         user: user.id,
       },
@@ -107,6 +119,10 @@ export default factories.createCoreController('api::recipe.recipe', ({ strapi })
   async findBestRecipes(ctx) {
     const recipesResponse = await strapi.service('api::recipe.recipe').find({
       fields: fieldsRecipe,
+      pagination: {
+        page: 1,
+        pageSize: 10000,
+      },
       populate: {
         img: fieldsImg,
         categories: { fields: fieldsCategory },

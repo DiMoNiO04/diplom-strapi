@@ -70,11 +70,12 @@ export default factories.createCoreController('api::favorite.favorite', ({ strap
     const favoriteIds = userFavorites.map((fav) => fav.id);
 
     if (favoriteIds.length === 0) {
-      return ctx.noContent();
+      ctx.status = 204;
+      return;
     }
 
     await Promise.all(favoriteIds.map((id) => strapi.entityService.delete('api::favorite.favorite', id)));
 
-    return ctx.noContent();
+    ctx.status = 204;
   },
 }));
