@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blocks_template_title_search_blocks",
+  "info": {
+    "displayName": "templateTitleSearchBlock",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "search": {
+      "type": "string",
+      "required": false
+    },
+    "nothingText": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

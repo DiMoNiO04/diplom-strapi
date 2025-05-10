@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_shared_texts",
+  "info": {
+    "displayName": "text"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "text"
+    }
+  }
+}

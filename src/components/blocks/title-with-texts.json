@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_blocks_title_with_texts",
+  "info": {
+    "displayName": "titleWithTexts",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "texts": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_blocks_simple_content_with_btns",
+  "info": {
+    "displayName": "simpleContentWithBtn",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "img": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images", "files", "videos", "audios"]
+    },
+    "texts": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text"
+    },
+    "btn": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.btn"
+    }
+  }
+}
