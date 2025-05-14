@@ -13,8 +13,7 @@
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
     "upgrade:dry": "npx @strapi/upgrade latest --dry",
-    "prettier": "npx prettier --write . ",
-    "prepare": "husky install"
+    "prettier": "npx prettier --write ."
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.12.7",
@@ -29,12 +28,9 @@
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.7.1",
-    "@commitlint/config-conventional": "^19.7.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "husky": "^8.0.0",
     "lint-staged": "^15.5.0",
     "prettier": "^3.5.3",
     "typescript": "^5"
@@ -48,7 +44,7 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
-      "npx prettier --write . "
+      "npx prettier --write ."
     ]
   }
 }
